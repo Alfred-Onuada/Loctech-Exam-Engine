@@ -34,7 +34,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --watch --watch-preserve-output app.js"
   },
   "author": "Promise Udo",
   "license": "ISC"

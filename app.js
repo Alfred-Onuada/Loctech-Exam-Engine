@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -25,7 +27,6 @@ const candidateRoutes = require('./routes/candidates');
 const examRoutes = require('./routes/exams');
 const resultRoutes = require('./routes/results');
 
-//connection to the database mongodb+srv://admin-promise:locexamspc6@cluster0.ustfc.mongodb.net
 // mongodb://localhost:27017
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
