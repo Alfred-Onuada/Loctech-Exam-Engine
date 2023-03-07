@@ -77,9 +77,11 @@ module.exports.getResponses = async (req, res) => {
     await newScore.save();
     await currCandidate.save();
 
+    res.status(200).json({ message: "exam submitted successfully" })
 
   } catch (e) {
-    // console.log(e);
+    console.log(e);
+    res.status(500).json({ message: "Something went wrong" })
   }
 };
 

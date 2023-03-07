@@ -10,6 +10,9 @@ const {isLoggedIn, isAdmin} = require('../middleware');
 router.route('/')
     .post(isLoggedIn, isAdmin,  catchAsync(question.createQuestion));
 
+router.route('/bulk')
+    .post(isLoggedIn, isAdmin, question.bulkUpload);
+
 router.route('/:id')
     .put(isLoggedIn, isAdmin,  catchAsync(question.updateQuestion))
     .delete(isLoggedIn, isAdmin,  catchAsync(question.deleteQuestion));

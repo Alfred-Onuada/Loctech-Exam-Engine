@@ -175,6 +175,8 @@ const showQuestion = (trivia, index) => {
     body: JSON.stringify({ answers, questions, exam }),
     headers: { "Content-Type": "application/json" },
   });
+
+  document.getElementById('examSubmitBtn').textContent = 'Submitted';
   window.location.replace("/candidate/thankyou");
 }
 

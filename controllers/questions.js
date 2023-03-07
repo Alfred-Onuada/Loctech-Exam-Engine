@@ -35,6 +35,33 @@ module.exports.createQuestion = async(req, res)=>{
     res.redirect(`/staff/dashboard/exams/${exam._id}`)
 };
 
+module.exports.bulkUpload = async(req, res)=>{
+    const { id } = req.params;
+    const questions = req.body;
+    
+    try {
+        const exam = await Exams.findById(id);
+
+        if (!exam) {
+            res.status(404).json({ message: "Exam with given id doesn't exist" });
+        }
+
+        if (questions.length == 0) {
+            res.status(400).json({ message: "Questions cannot be empty" });
+        }
+
+        savedQuestions = await Questions.insertMany(questions);
+        // Bad idea, using lookup would be better but would need re modeling
+        exam.questions.push(...savedQuestions);
+        await exam.save();
+
+        res.status(200).json({ message: "Questions saved" });
+    } catch (error) {
+        res.status(500).json({ message: "Something went wrong, try again" });
+        console.log(error);
+    }
+};
+
 module.exports.updateQuestion = async(req, res)=>{
     // const {id} = req.params;
     // const exam = await Exams.findById(id);
