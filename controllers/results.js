@@ -153,6 +153,7 @@ module.exports.renderResultIndex = async (req, res) => {
   res.render("results/index", { results });
 };
 
+// NOT USED
 module.exports.renderResultDetail = async (req, res) => {
   const { resultId } = req.params;
 
