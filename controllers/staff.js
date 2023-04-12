@@ -3,7 +3,7 @@ const Candidate = require('../models/staff');
 const Exams = require('../models/exams');
 const Questions= require('../models/question');
 const Results = require('../models/results');
-const validUsername = ["promise.udo", "hubert.nyinah", "dan.martins", "jerry.anubi", "abassyornor.edem", "ebube.ike", "joy.okwu", "hope.israel", "lawson.chibueze", "godbless.alali"];
+const validUsername = ["hope.israel", "lawson.chibueze", "rita.mbagwu", "santus.sixtus"];
 const validDomainName = ["loctech.ng", "loctechng.com"];
 
 
