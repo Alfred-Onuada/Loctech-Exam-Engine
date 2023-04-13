@@ -27,6 +27,9 @@ const userSchema = new Schema({
         ref: 'Result'
         }
     ],
+    marketingPoint: {
+        type: String
+    }
 });
 
 //will add on fields for username and password, makes them unique and give us additional methods to use

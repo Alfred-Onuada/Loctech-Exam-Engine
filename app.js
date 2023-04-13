@@ -156,6 +156,20 @@ app.post('/upload', upload.single('candidates'), async (req, res) => {
 });
 //file upload end
 
+app.post("/updateMarketingPoint", async (req, res) => {
+  const { point, userId } = req.body;
+
+  try {
+    console.log(req.body);
+
+    await Candidate.updateOne({ _id: new mongoose.Types.ObjectId(userId) }, { $set: { marketingPoint: point } });
+
+    res.status(200).json({ message: "Success" });
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong" })
+  }
+})
+
 //middleware to use the routes
 app.use('/candidate', candidateRoutes);
 app.use('/staff', staffRoutes);

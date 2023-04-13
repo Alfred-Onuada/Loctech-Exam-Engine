@@ -1,6 +1,36 @@
 <% layout('layouts/boilerplate') %> 
 <link rel="stylesheet" href="/stylesheets/instructions.css">
 
+<script>
+    async function updateMarketingPoint(elem, userId) {
+        try {
+            const baseUrl = location.origin;
+            const point = elem.value;
+
+            const resp =  await fetch(baseUrl + "/updateMarketingPoint", {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    point,
+                    userId
+                })
+            })
+
+            const data = await resp.json();
+
+            document.getElementById("start-exam").style.pointerEvents = "unset";
+            
+            alert("Thank you");
+        } catch (err) {
+            console.log(err);
+            alert("please try again");
+        }
+        
+    }
+</script>
+
 <div class="container p-2 mt-3">
     <h1 class="text-center"><%= exam.name %> </h1>
     <hr />
@@ -43,11 +73,22 @@
             <li>
                 You cannot advance to the next question if the current question is unanswered. But you can always return to change your answer.
             </li>
+            <br>
+                <h4>Before you begin, take a moment to tell us how did you heard about us.</h4>
+
+                <select onchange="updateMarketingPoint(this, '<%= currentStaff._id %>')">
+                    <option value="youtube">Youtube</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="friends">Friends</option>
+                    <option value="in_person">Someone came to you</option>
+                </select>
+
+            <br>
             <li>
                 Click on the <em>Start Exam</em> button to begin
             </li>
         </ul>
-        <a href="/candidate/exam/<%=exam._id %>/running" class="btn btn-primary" id="start-exam">Start Exam</a>
+        <a style="pointer-events: none;" href="/candidate/exam/<%=exam._id %>/running" class="btn btn-primary" id="start-exam">Start Exam</a>
     </div>
 
         <script src="/javascripts/running.js"></script>
