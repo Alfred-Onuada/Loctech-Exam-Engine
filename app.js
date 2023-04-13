@@ -166,7 +166,27 @@ app.post("/updateMarketingPoint", async (req, res) => {
 
     res.status(200).json({ message: "Success" });
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: "Something went wrong" })
+  }
+})
+
+app.post("/updateUserInfo", async (req, res) => {
+  const update = req.body;
+  const userId = update.userId;
+
+  delete update['userId'];
+
+  try {
+    await Candidate.updateOne(
+      { _id: new mongoose.Types.ObjectId(userId) },
+      { $set: { ...update } }
+    );
+
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: "Something went wrong" });
   }
 })
 

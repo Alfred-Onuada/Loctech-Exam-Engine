@@ -29,6 +29,9 @@ const userSchema = new Schema({
     ],
     marketingPoint: {
         type: String
+    },
+    fullname: {
+        type: String
     }
 });
 

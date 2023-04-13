@@ -4,10 +4,9 @@
 <div class=" container  align-items-center mt-3">
 
   <h1 class="text-center">All Exams </h1>
-    <hr />
+  <hr />
 
   <div class="row">
-
     <% for(exam of exams) { %> 
       <div class="col-sm-6">
         <div class="card mt-3">
@@ -19,4 +18,78 @@
       </div>
     <% } %> 
   </div>
+
+  <hr>
+
+  <div style="display: flex; align-items: center; flex-direction: column">
+    <h1 class="text-center">Personal Information</h1>
+    <p class="text-center">Please look at your personal Information and make any adjustments neccessary, Also please type in your full name as it should appear on your result thank you <br> if there are no mistakes you can proceed</p>
+    <form id="updateForm" style="width: 60%; display: flex; flex-direction: column; margin: 30px 0px;">
+      <input type="text" id="userId" value="<%= currentStaff._id %>" hidden>
+      <div class="mb-3">
+        <label for="username">Username</label>
+        <input class="form-control" value="<%= currentStaff.username %>" type="text" id="username" name="username" placeholder="Username" autofocus required>
+      </div>
+      <div class="mb-3">
+        <label for="username">Full Name</label>
+        <input class="form-control" value="" type="text" id="fullname" name="fullname" placeholder="John Doe" required>
+      </div>
+      <div class="mb-3">
+        <label for="username">Email</label>
+        <input class="form-control" value="<%= currentStaff.email %>" type="email" id="email" name="email" placeholder="doe@loctech.ng" required>
+      </div>
+      <div class="mb-3">
+        <label for="username">Phone</label>
+        <input class="form-control" value="<%= currentStaff.phone %>" type="text" id="phone" name="phone" placeholder="+234 892391313" required>
+      </div>
+      <div class="mb-3">
+        <label for="username">Course of Interest</label><br>
+        <select name="course" id="course" value="<%= currentStaff.course %>">
+          <option value="<%= currentStaff.course %>"><%= currentStaff.course %></option>
+        </select>
+      </div>
+
+      <button class="btn btn-primary">Update</button>
+    </form>
+  </div>
+
+
+  <script>
+    document.getElementById("updateForm").addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      try{
+        const userId = document.getElementById("userId").value;
+
+        const data = new FormData(e.target);
+        const payload = {
+          username: data.get("username"),
+          fullname: data.get("fullname"),
+          email: data.get("email"),
+          phone: data.get("phone"),
+          course: data.get("course"),
+          userId
+        }
+  
+        const baseUrl = location.origin;
+  
+        await fetch(baseUrl + "/updateUserInfo", {
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        alert("Updated thank you");
+        location.reload();
+      } catch (error) {
+        alert("Something went wrong please refresh and try again");
+
+        console.log(error);
+      }
+
+    })
+  </script>
+
   </div>
