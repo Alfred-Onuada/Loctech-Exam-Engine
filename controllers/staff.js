@@ -100,7 +100,7 @@ module.exports.renderDashboard = async (req, res)=>{
 };
 
 module.exports.updateCandidate = async(req, res)=>{
-    const {username, email, course, phone} = req.body;
+    const {fullname, username, email, course, phone, collected} = req.body;
     const {id} = req.params;
     const filter = {_id: id};
 

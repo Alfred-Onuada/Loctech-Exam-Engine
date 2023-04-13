@@ -32,6 +32,13 @@ const userSchema = new Schema({
     },
     fullname: {
         type: String
+    },
+    collected: {
+        type: Boolean,
+        default: false
+    },
+    secondCourseChoice: {
+        type: String
     }
 });
 
