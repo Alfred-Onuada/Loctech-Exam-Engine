@@ -21,6 +21,7 @@
             const data = await resp.json();
 
             document.getElementById("start-exam").style.pointerEvents = "unset";
+            document.getElementById("start-exam").style.opacity = "1";
             
             alert("Thank you");
         } catch (err) {
@@ -77,10 +78,12 @@
                 <h4>Before you begin, take a moment to tell us how did you heard about us.</h4>
 
                 <select onchange="updateMarketingPoint(this, '<%= currentStaff._id %>')">
-                    <option value="youtube">Youtube</option>
-                    <option value="facebook">Facebook</option>
-                    <option value="friends">Friends</option>
-                    <option value="in_person">Someone came to you</option>
+                    <option value="None">None</option>
+                    <option value="Facebook">Facebook</option>
+                    <option value="Radio">Radio</option>
+                    <option value="Friends">Friends</option>
+                    <option value="Billboard">Billboard</option> 
+                    <option value="Others">Others</option>
                 </select>
 
             <br>
@@ -88,7 +91,7 @@
                 Click on the <em>Start Exam</em> button to begin
             </li>
         </ul>
-        <a style="pointer-events: none;" href="/candidate/exam/<%=exam._id %>/running" class="btn btn-primary" id="start-exam">Start Exam</a>
+        <a style="pointer-events: none; opacity: .5" href="/candidate/exam/<%=exam._id %>/running" class="btn btn-primary" id="start-exam">Start Exam</a>
     </div>
 
         <script src="/javascripts/running.js"></script>

@@ -3,44 +3,26 @@
 
 <div class=" container  align-items-center mt-3">
 
-  <h1 class="text-center">All Exams </h1>
-  <hr />
-
-  <div class="row">
-    <% for(exam of exams) { %> 
-      <div class="col-sm-6">
-        <div class="card mt-3">
-          <div class="card-body">
-            <h5 class="card-title"><%= exam.name.toUpperCase() %></h5>
-            <a href="/candidate/exam/<%=exam._id %>/instructions" class="btn btn-primary">Take This Exam <i class="far fa-angle-double-right"></i></a>
-          </div>
-        </div>
-      </div>
-    <% } %> 
-  </div>
-
-  <hr>
-
-  <div style="display: flex; align-items: center; flex-direction: column">
+  <div id="pii" style="display: flex; align-items: center; flex-direction: column">
     <h1 class="text-center">Personal Information</h1>
     <p class="text-center">Please look at your personal Information and make any adjustments neccessary, Also please type in your full name as it should appear on your result thank you <br> if there are no mistakes you can proceed</p>
     <form id="updateForm" style="width: 60%; display: flex; flex-direction: column; margin: 30px 0px;">
       <input type="text" id="userId" value="<%= currentStaff._id %>" hidden>
       <div class="mb-3">
         <label for="username">Username</label>
-        <input class="form-control" value="<%= currentStaff.username %>" type="text" id="username" name="username" placeholder="Username" autofocus required>
+        <input class="form-control" value="<%= currentStaff.username %>" type="text" id="username" name="username" placeholder="Type your username" autofocus required>
       </div>
       <div class="mb-3">
         <label for="username">Full Name</label>
-        <input class="form-control" value="" type="text" id="fullname" name="fullname" placeholder="John Doe" required>
+        <input class="form-control" value="" type="text" id="fullname" name="fullname" placeholder="Type your full name" required>
       </div>
       <div class="mb-3">
         <label for="username">Email</label>
-        <input class="form-control" value="<%= currentStaff.email %>" type="email" id="email" name="email" placeholder="doe@loctech.ng" required>
+        <input class="form-control" value="<%= currentStaff.email %>" type="email" id="email" name="email" placeholder="Type your email" required>
       </div>
       <div class="mb-3">
         <label for="username">Phone</label>
-        <input class="form-control" value="<%= currentStaff.phone %>" type="text" id="phone" name="phone" placeholder="+234 892391313" required>
+        <input class="form-control" value="<%= currentStaff.phone %>" type="text" id="phone" name="phone" placeholder="Type your phone number" required>
       </div>
       <div class="mb-3">
         <label for="username">Course of Interest</label><br>
@@ -53,6 +35,20 @@
     </form>
   </div>
 
+  <div class="row mb-5" style="display: none; flex-direction: column; align-content: center;" id="takeExam">
+    <h1 class="text-center">All Exams </h1>
+    <hr />
+    <% for(exam of exams) { %> 
+      <div class="col-sm-6">
+        <div class="card mt-3">
+          <div class="card-body">
+            <h5 class="card-title"><%= exam.name.toUpperCase() %></h5>
+            <a href="/candidate/exam/<%=exam._id %>/instructions" class="btn btn-primary">Take This Exam <i class="far fa-angle-double-right"></i></a>
+          </div>
+        </div>
+      </div>
+    <% } %> 
+  </div>
 
   <script>
     document.getElementById("updateForm").addEventListener('submit', async function (e) {
@@ -81,8 +77,10 @@
           body: JSON.stringify(payload)
         });
 
+        document.getElementById("takeExam").style.display = 'flex';
+        document.getElementById("pii").style.display = 'none';
+
         alert("Updated thank you");
-        location.reload();
       } catch (error) {
         alert("Something went wrong please refresh and try again");
 
