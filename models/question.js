@@ -30,6 +30,7 @@ const questionSchema = new mongoose.Schema(
     },
     correctAnswer: {
       type: String,
+      uppercase: true,
       enum: ["A", "B", "C", "D"],
     },
     exam: {
