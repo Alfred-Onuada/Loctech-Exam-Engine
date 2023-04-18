@@ -107,7 +107,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Username</th>
-                                                <th>Exam</th>
+                                                <th>Email</th>
                                                 <th>Phone</th>
                                                 <th>Score</th>
                                                 <th>Date Created</th>                                       
@@ -118,7 +118,7 @@
                                         <tfoot>
                                             <tr>
                                                 <th>Username</th>
-                                                <th>Exam</th> 
+                                                <th>Email</th> 
                                                 <th>Phone</th>                                      
                                                 <th>Score</th>
                                                 <th>Date Created</th>
@@ -130,7 +130,7 @@
                                             <% for(let result of results){ %> 
                                                 <tr>
                                                     <td><%= result.candidate.username %> </td>
-                                                    <td><%= result.exam.name %> </td>
+                                                    <td><%= result.candidate.email %> </td>
                                                     <td><%= result.phone %> </td>
                                                     <td><%= result.score  %> </td>
                                                     <td><%= result.date_created %> </td>
